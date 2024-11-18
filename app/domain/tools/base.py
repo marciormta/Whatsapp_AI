@@ -12,6 +12,7 @@ class ToolResult(BaseModel):
 
 class Tool(BaseModel):
     name: str
+    description: str = ""
     model: Union[Type[BaseModel], Type[SQLModel], None]
     function: Callable
     validate_missing: bool = True

@@ -87,6 +87,10 @@ class RoutingAgent:
         self.step_history.append(response.choices[0].message)
         self.to_console("RESPONSE", response.choices[0].message.content, color="blue")
         tool_kwargs = parse_function_args(response)
+        if not getattr(response.choices[0].message, "tool_calls"):
+            self.to_console("Tool Name", "None")
+            self.to_console("Tool Args", tool_kwargs)
+            return response.choices[0].message.content
         tool_name = response.choices[0].message.tool_calls[0].function.name
         self.to_console("Tool Name", tool_name)
         self.to_console("Tool Args", tool_kwargs)

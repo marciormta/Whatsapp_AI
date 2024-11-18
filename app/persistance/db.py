@@ -1,4 +1,4 @@
-from database.models import *
+from app.persistance.models import *
 from sqlmodel import SQLModel, create_engine
 import os
 
