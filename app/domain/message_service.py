@@ -7,10 +7,10 @@ from app.domain.agents.demo_agent import demo_agent
 from app.schema import Audio, User
 from openai import OpenAI
 
+from app.config import OPENAI_API_KEY, WHATSAPP_API_KEY
+from openai import OpenAI
 
-
-WHATSAPP_API_KEY = "YOUR_API_KEY"
-llm = OpenAI()
+llm = OpenAI(api_key=OPENAI_API_KEY)
 
 def transcribe_audio_file(audio_file: BinaryIO) -> str:
     if not audio_file:
@@ -74,7 +74,7 @@ def authenticate_user_by_phone_number(phone_number: str) -> User | None:
 
 
 def send_whatsapp_message(to, message, template=True):
-    url = f"https://graph.facebook.com/v18.0/289534840903017/messages"
+    url = f"https://graph.facebook.com/v18.0/427719920419207/messages"
     headers = {
         "Authorization": f"Bearer " + WHATSAPP_API_KEY,
         "Content-Type": "application/json"
